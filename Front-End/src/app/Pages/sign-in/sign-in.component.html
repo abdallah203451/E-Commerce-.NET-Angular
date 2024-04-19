@@ -1,0 +1,58 @@
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>          
+</head>
+<section class="container1">
+    <div class="form login">
+        <div class="form-content">
+            <header>Login</header>
+            <form [formGroup]="loginForm">
+                <div class="field input-field">
+                    <input formControlName="email" id="email" [(ngModel)]="UserLogin.email" type="email" placeholder="Email" class="input">
+                </div>
+                <div class="field input-field">
+                    <input  formControlName="password" id="password" [(ngModel)]="UserLogin.password" type="password" placeholder="Password" class="password">
+                    <i class='bx bx-hide eye-icon'></i>
+                </div>
+                <div class="form-link">
+                    <a href="#" class="forgot-pass">Forgot password?</a>
+                </div>
+                <div class="field button-field">
+                    <button [disabled]="!loginForm.valid" (click)="onLogin()" type="submit">Login</button>
+                </div>
+            </form>
+            <div class="form-link">
+                <span>Don't have an account? <a routerLink ="/sign-up" routerLinkActive="active" class="link signup-link">Signup</a></span>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="media-options">
+            <a href="" class="field facebook">
+                <i class='bx bxl-facebook facebook-icon'></i>
+                <span>Login with Facebook</span>
+            </a>
+        </div>
+        <div class="media-options">
+            <a href="#" class="field google">
+                <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="" class="google-img">
+                <span>Login with Google</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="mx-3 my-2 py-2 bordert">
+    <div class="text-center py-3">
+        <a href="https://wwww.facebook.com" target="_blank" class="px-2">
+            <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="">
+        </a>
+        <a href="https://www.google.com" target="_blank" class="px-2">
+            <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                alt="">
+        </a>
+
+        <a href="https://www.github.com" target="_blank" class="px-2">
+            <img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
+                alt="">
+        </a>
+    </div>
+</div> -->

@@ -1,0 +1,254 @@
+<!-- <head>
+    <link rel="shortcut icon" href="./assets/favicon.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    </head> -->
+<div class="cont">
+    <!-- Start Header/Navigation -->
+    <app-nav-bar></app-nav-bar>
+    <!-- End Header/Navigation -->
+
+    <!-- Start Hero Section -->
+    <!-- <img src="./assets/couch.png" class="img-fluid"> -->
+    <div class="hero">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
+                        <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                            vulputate velit imperdiet dolor tempor tristique.</p>
+                        <p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#"
+                                class="btn btn-white-outline">Explore</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-img-wrap">
+
+                        <img src="./assets/img-1.png" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Hero Section -->
+
+    <!-- Start Product Section -->
+    <div class="product-section">
+        <div class="container">
+            <div class="row">
+
+                <!-- Start Column 1 -->
+                <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                    <h2 class="mb-4 section-title">Top trending products.</h2>
+                    <p class="mb-4">Our Best Sellers and Trending Products in the last week. </p>
+                    <p><a href="shop.html" class="btn">Explore</a></p>
+                </div>
+                <!-- End Column 1 -->
+
+                <!-- Start Column 2 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item" href="cart.html">
+                        <img src="./assets/pngfind.com-laptop-png-603470.png" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">Nordic Chair</h3>
+                        <strong class="product-price">$50,000 LE</strong>
+
+                        <span class="icon-cross">
+                            <img src="./assets/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+                <!-- End Column 2 -->
+
+                <!-- Start Column 3 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item" href="cart.html">
+                        <img src="./assets/product-2.png" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">Kruzo Aero Chair</h3>
+                        <strong class="product-price">$78.00</strong>
+
+                        <span class="icon-cross">
+                            <img src="./assets/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+                <!-- End Column 3 -->
+
+                <!-- Start Column 4 -->
+                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <a class="product-item" href="cart.html">
+                        <img src="./assets/watches2.png" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">Ergonomic Chair</h3>
+                        <strong class="product-price">$43.00</strong>
+
+                        <span class="icon-cross">
+                            <img src="./assets/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+                </div>
+                <!-- End Column 4 -->
+
+            </div>
+        </div>
+    </div>
+    <!-- End Product Section -->
+
+
+    <!-- Start Categories -->
+    <div class="container">
+        <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+            <h2 class="mb-4 section-title">All categories.</h2>
+        </div>
+    </div>
+    <div class="box-container container">
+        <a (click)="categories(2)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 60%; margin-top: 17%; margin-left: 18%;"
+                    src="./assets/pngfind.com-samsung-led-tv-png-1456893.png" alt="Curved UHD TV">
+                <div class="middle">
+                    <div class="text">Electronics</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(3)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 78%; margin-top: 25%; margin-left: 15%;"
+                    src="./assets/pngfind.com-laptop-png-603470.png" alt="GUCCI">
+                <div class="middle">
+                    <div class="text">Compuetrs and Laptops</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(4)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 62%; margin-top: 20%; margin-left: 16%;" src="./assets/61d2f93392b57c0004c64747.png"
+                    alt="Curved UHD TV">
+                <div class="middle">
+                    <div class="text">Mobiles</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(5)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img src="./assets/watches2.png" alt="GUCCI">
+                <div class="middle">
+                    <div class="text">Fashion</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(6)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="margin-top: 70px;" src="./assets/product-3.png" alt="Curved UHD TV">
+                <div class="middle">
+                    <div class="text">Furniture</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(7)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 62%; margin-top: 18%; margin-left: 18%;"
+                    src="./assets/71ARPpGJgvL._AC_UL160_SR160,160_.jpg" alt="GUCCI">
+                <div class="middle">
+                    <div class="text">Books</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(8)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 85%; margin-top: 18%; margin-left: 8%;" src="./assets/sport.jpg" alt="Curved UHD TV">
+                <div class="middle">
+                    <div class="text">Sports</div>
+                </div>
+            </div>
+        </a>
+        <a (click)="categories(9)" routerLink='/shop' routerLinkActive='active' class="box">
+            <div>
+                <img style="width: 80%; margin-top: 5%; margin-left: 8%;" src="./assets/food.jpg" alt="GUCCI">
+                <div class="middle">
+                    <div class="text">Food</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- End Categories -->
+
+
+    <!-- Start Why Choose Us Section -->
+    <div class="why-choose-section">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Why to Choose Us</h2>
+                    <p></p>
+
+                    <div class="row my-5">
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="./assets/truck.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Fast &amp; Free Shipping</h3>
+                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                    vulputate.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="./assets/bag.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Easy to Shop</h3>
+                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                    vulputate.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="./assets/support.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>24/7 Support</h3>
+                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                    vulputate.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-6">
+                            <div class="feature">
+                                <div class="icon">
+                                    <img src="./assets/return.svg" alt="Image" class="imf-fluid">
+                                </div>
+                                <h3>Hassle Free Returns</h3>
+                                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+                                    vulputate.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <!-- <div class="img-wrap"> -->
+                    <img src="./assets/why-choose-us-img.jpg" alt="Image" class="img-fluid">
+                    <!-- </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Why Choose Us Section -->
+
+    <!-- Start Footer Section -->
+    <app-footer></app-footer>
+    <!-- End Footer Section -->
+</div>
+
+
+
+<!-- <script src="C:/Users/lenovo/Downloads/E-commerce template/js/bootstrap.bundle.min.js"></script>
+<script src="C:/Users/lenovo/Downloads/E-commerce template/js/tiny-slider.js"></script>
+<script src="C:/Users/lenovo/Downloads/E-commerce template/js/custom.js"></script>
+<script src="D:/Abdallah Ashraf/programming projects/E-Commerce/Front-End/node_modules/jquery/dist/jquery.js"></script>
+<script
+    src="D:/Abdallah Ashraf/programming projects/E-Commerce/Front-End/node_modules/bootstrap/dist/js/bootstrap.js"></script> -->

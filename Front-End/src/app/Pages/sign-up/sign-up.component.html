@@ -1,0 +1,51 @@
+<div class="background">
+  <div class="container1">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form [formGroup]="registerForm">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input formControlName="fullname" id="fullname" [(ngModel)]="UserRegister.fullname" type="text"
+              placeholder="Enter your name" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input formControlName="email" id="email" [(ngModel)]="UserRegister.email" type="text"
+              placeholder="Enter your email" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input formControlName="phone" id="phone" [(ngModel)]="UserRegister.phone" type="text"
+              placeholder="Enter your number" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input formControlName="password" id="password" [(ngModel)]="UserRegister.password" type="text"
+              placeholder="Enter your password" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input formControlName="password1" id="password1" [(ngModel)]="UserRegister.password1" type="text"
+              placeholder="Confirm your password" required>
+          </div>
+
+          <div class="container">
+            <span class="details">Are you a Seller?</span>
+            <input style="margin-left: 5px; " formControlName="isSeller" [(ngModel)]="UserRegister.isSeller" type="checkbox">
+          </div>
+
+        </div>
+
+        <div class="button">
+          <input [disabled]="!registerForm.valid" type="submit" (click)="onRegister()" value="Sign Up">
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

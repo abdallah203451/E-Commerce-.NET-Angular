@@ -1,0 +1,138 @@
+.cont {
+    overflow-x: hidden;
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    line-height: 28px;
+    color: #6a6a6a;
+    font-size: 14px;
+    /* background-color: #eff2f1; */
+}
+
+.hero {
+    /* background: #3b5d50; */
+    background: #4934a7;
+    padding: calc(4rem - 30px) 0 0rem 0;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        padding: calc(4rem - 30px) 0 4rem 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero {
+        padding: calc(8rem - 30px) 0 8rem 0;
+    }
+}
+
+.hero .intro-excerpt {
+    position: relative;
+    z-index: 4;
+}
+
+@media (min-width: 992px) {
+    .hero .intro-excerpt {
+        max-width: 450px;
+    }
+}
+
+.hero h1 {
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 1400px) {
+    .hero h1 {
+        font-size: 54px;
+    }
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 30px;
+}
+
+.untree_co-section {
+    padding: 7rem 0;
+}
+
+.before-footer-section {
+    padding: 7rem 0 12rem 0 !important;
+}
+
+
+.site-blocks-table {
+    overflow: auto;
+}
+
+.site-blocks-table .product-thumbnail {
+    width: 200px;
+}
+
+.site-blocks-table .btn {
+    padding: 2px 10px;
+}
+
+.site-blocks-table thead th {
+    padding: 30px;
+    text-align: center;
+    border-width: 0px !important;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 18px;
+}
+
+.site-blocks-table td {
+    padding: 20px;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.site-blocks-table tbody tr:first-child td {
+    border-top: 1px solid #3b5d50 !important;
+}
+
+.site-blocks-table .btn {
+    background: none !important;
+    color: #000000;
+    border: none;
+    height: auto !important;
+}
+
+
+.form-control {
+    height: 50px;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.form-control:active,
+.form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #3b5d50;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-control::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.form-control::-moz-placeholder {
+    font-size: 14px;
+}
+
+.form-control:-ms-input-placeholder {
+    font-size: 14px;
+}
+
+.form-control:-moz-placeholder {
+    font-size: 14px;
+}
