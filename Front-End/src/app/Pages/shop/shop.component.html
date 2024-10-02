@@ -97,7 +97,20 @@
               class="img-fluid product-thumbnail"
             />
             <h3 class="product-title">{{ prod.name }}</h3>
+            @if(prod?.discount>0){
+            <strong style="text-decoration: line-through" class="product-price"
+              >{{ prod.price }} EGP</strong
+            >
+            <br />
+            <strong style="color: red" class="product-price"
+              >{{
+                (prod?.price * (1 - prod?.discount / 100)).toFixed(2)
+              }}
+              EGP</strong
+            >
+            }@else {
             <strong class="product-price">{{ prod.price }} EGP</strong>
+            }
 
             <button (click)="addToCart(prod.id)" class="icon-cross">
               <img src="assets/cross.svg" class="img-fluid" />
