@@ -1,0 +1,54 @@
+<div class="container product-details mt-5">
+  <div class="row">
+    <!-- Product Image -->
+    <div class="col-lg-6 col-md-12 text-center mb-4">
+      <img
+        [src]="
+          _sanitizer.bypassSecurityTrustResourceUrl(
+            'data:image/png;base64,' + product?.image
+          )
+        "
+        class="img-fluid product-image"
+        alt="Product Image"
+      />
+    </div>
+
+    <!-- Product Information -->
+    <div class="col-lg-6 col-md-12">
+      <h1 class="product-name">{{ product?.name }}</h1>
+
+      <div class="product-price">
+        <span *ngIf="product?.discount > 0" class="original-price"
+          >{{ product?.price.toFixed(2) }} EGP</span
+        >
+        <span class="discounted-price"
+          >{{
+            (product?.price * (1 - product?.discount / 100)).toFixed(2)
+          }}
+          EGP</span
+        >
+      </div>
+
+      <p class="product-description">{{ product?.description }}</p>
+
+      <!-- <div class="product-quantity">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            [(ngModel)]="quantity"
+            class="form-control"
+            min="1"
+            [max]="product?.quantity"
+            placeholder="Enter quantity"
+          />
+        </div> -->
+
+      <p class="text-danger">Only {{ product?.quantity }} left in stock!</p>
+
+      <button class="btn btn-primary mt-3" (click)="addToCart()">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

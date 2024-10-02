@@ -1,9 +1,20 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 // import { Router } from 'express';
-import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 //import { NotificationService } from '../../notification.service';
 
@@ -12,15 +23,15 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [HttpClientModule, FormsModule, ReactiveFormsModule, NgIf],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+  styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
   public invalidRegister = false;
   registerForm!: FormGroup;
   phonePattern = '^[0-9]{4}[0-9]{3}[0-9]{4}$';
-  constructor( private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
   ngOnInit(): void {
-    (this.registerForm = new FormGroup({
+    this.registerForm = new FormGroup({
       fullname: new FormControl(this.UserRegister.username, [
         Validators.required,
         Validators.minLength(3),
@@ -36,15 +47,19 @@ export class SignUpComponent {
       password: new FormControl(this.UserRegister.password, [
         Validators.required,
         Validators.minLength(8),
+        Validators.pattern(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/
+        ),
       ]),
       password1: new FormControl(this.UserRegister.password1, [
         Validators.required,
         Validators.minLength(8),
+        Validators.pattern(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/
+        ),
       ]),
-      isSeller: new FormControl(this.UserRegister.isSeller, [
-
-      ]),
-    }))
+      isSeller: new FormControl(this.UserRegister.isSeller, []),
+    });
   }
   get fullname() {
     return this.registerForm.get('fullname');
@@ -63,14 +78,14 @@ export class SignUpComponent {
   }
 
   UserRegister: any = {
-    fullname :'',
+    fullname: '',
     email: '',
     phone: '',
     password: '',
     password1: '',
     isSeller: false,
   };
-  
+
   onRegister() {
     localStorage.clear();
     if (this.registerForm.valid) {
@@ -79,11 +94,10 @@ export class SignUpComponent {
         next: (res) => {
           this.invalidRegister = false;
           //this.notification.showSuccess("New user registered successfully", "Success")
-          this.router.navigate(['/sign-in'])
+          this.router.navigate(['/sign-in']);
           alert(res.message);
         },
         error: (err) => {
-          
           alert(err?.error.message);
         },
       });

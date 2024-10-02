@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Back_End.Application.Carts;
+using Back_End.Application.Repositories;
+using Back_End.Domain.Entities;
+using Back_End.Infrastructure.Context;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -6,38 +13,52 @@ namespace Back_End.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class CartController : ControllerBase
 	{
-		// GET: api/<CartController>
-		[HttpGet]
-		public IEnumerable<string> Get()
+		private readonly ICartRepository _cartRepository;
+
+		public CartController(ICartRepository cartRepository)
 		{
-			return new string[] { "value1", "value2" };
+			_cartRepository = cartRepository;
 		}
 
-		// GET api/<CartController>/5
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet("GetCartItems")]
+		public async Task<ActionResult<IEnumerable<CartItemDto>>> GetCartItems()
 		{
-			return "value";
+			var userId = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
+			var cartItems = await _cartRepository.GetCartItemsAsync(userId);
+			return Ok(cartItems);
 		}
 
-		// POST api/<CartController>
-		[HttpPost]
-		public void Post([FromBody] string value)
+		[HttpPost("AddCartItem")]
+		public async Task<IActionResult> AddCartItem([FromBody] int productId)
 		{
+			var userId = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
+			await _cartRepository.AddCartItemAsync(productId, userId);
+			return Ok();
 		}
 
-		// PUT api/<CartController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
+		[HttpPut("UpdateCartItem/{cartItemId}")]
+		public async Task<IActionResult> UpdateCartItem(int cartItemId, [FromBody] int quantity)
 		{
+			await _cartRepository.UpdateCartItemAsync(cartItemId, quantity);
+			return Ok();
 		}
 
-		// DELETE api/<CartController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
+		[HttpDelete("RemoveCartItem/{cartItemId}")]
+		public async Task<IActionResult> RemoveCartItem(int cartItemId)
 		{
+			await _cartRepository.RemoveCartItemAsync(cartItemId);
+			return Ok();
+		}
+
+		[HttpDelete("ClearCart")]
+		public async Task<IActionResult> ClearCart()
+		{
+			var userId = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value;
+			await _cartRepository.ClearCartAsync(userId);
+			return Ok();
 		}
 	}
 }

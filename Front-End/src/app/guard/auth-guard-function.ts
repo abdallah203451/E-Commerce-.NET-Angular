@@ -45,7 +45,7 @@ export async function refreshingTokens(token: string | null) {
         return false;
     }
 
-    const tokenModel = JSON.stringify({ userId: userId, token: token, refreshToken: refreshToken });
+    const tokenModel = JSON.stringify({ userId: userId, token: token, refreshToken: refreshToken, role: 'User' });
 
     let isRefreshSuccess: boolean;
 

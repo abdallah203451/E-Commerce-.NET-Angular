@@ -12,19 +12,19 @@
 .hero {
     /* background: #3b5d50; */
     background: #4934a7;
-    padding: calc(4rem - 30px) 0 0rem 0;
+    padding: calc(2rem - 30px) 0 0rem 0;
     width: 100%;
 }
 
 @media (min-width: 768px) {
     .hero {
-        padding: calc(4rem - 30px) 0 4rem 0;
+        padding: calc(2rem - 30px) 0 2rem 0;
     }
 }
 
 @media (min-width: 992px) {
     .hero {
-        padding: calc(8rem - 30px) 0 8rem 0;
+        padding: calc(4rem - 30px) 0 4rem 0;
     }
 }
 

@@ -1,16 +1,13 @@
-﻿using Back_End.Contracts;
-using Back_End.Data;
-using Back_End.Models.Users;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Back_End.Application.Repositories;
+using Back_End.Application.Users;
+using Back_End.Domain.Entities;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.Data;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using System.Security.Claims;
-using System.Text;
+using System.Web;
 
 namespace Back_End.Controllers
 {
@@ -20,14 +17,16 @@ namespace Back_End.Controllers
 	public class UserController : ControllerBase
 	{
 		private readonly IAuthManager _authManager;
-		private readonly IConfiguration _configuration;
-		private readonly UserManager<User> _userManager;
+		//private readonly IConfiguration _configuration;
+		//private readonly UserManager<User> _userManager;
+		//private readonly HttpContext _httpContext;
 
-		public UserController(IAuthManager authManager, IConfiguration configuration, UserManager<User> userManager) 
+		public UserController(IAuthManager authManager) 
 		{
 			_authManager = authManager;
-			_configuration = configuration;
-			_userManager = userManager;
+			//_configuration = configuration;
+			//_userManager = userManager;
+			//_httpContext = httpContext;
 		}
 
 
@@ -37,10 +36,11 @@ namespace Back_End.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
 		{
-			if (User.Identity.IsAuthenticated)
-			{
-				var x = 1;
-			}
+			//if (_httpContext.User.Claims.)
+			//{
+			//	var x = 1;
+			//}
+
 			var authResponse = await _authManager.Login(loginDto);
 
 			if (authResponse == null)
@@ -86,6 +86,83 @@ namespace Back_End.Controllers
 				return Unauthorized();
 			}
 			return Ok(authResponse);
+		}
+
+		[HttpPost("forgot-password")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<ActionResult> ForgotPassword([FromBody] ForgotPasswordDto email)
+		{
+			var token = await _authManager.GeneratePasswordResetTokenAsync(email.Email);
+			if (token == null)
+				return BadRequest();
+
+			return Ok();
+		}
+
+		[HttpPost("reset-password")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<ActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+		{
+			var result = await _authManager.ResetPasswordAsync(dto.Email, dto.Token, dto.NewPassword);
+			if (!result)
+				return BadRequest();
+
+			return Ok();
+		}
+
+		[Authorize]
+		[HttpGet("profile-data")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<ActionResult> ProfileData()
+		{
+			var email = ((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.Email).Value;
+			var data = await _authManager.GetProfileDataAsync(email);
+			if(data == null) return BadRequest();
+			return Ok(data);
+		}
+
+		[Authorize]
+		[HttpPut("update-profile")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<ActionResult> UpdateProfile([FromBody] ProfileDataDto profileDataDto)
+		{
+			if(profileDataDto == null) return BadRequest();
+			var result = await _authManager.UpdateProfileDataAsync(profileDataDto);
+			if (!result) return BadRequest();
+
+			return Ok();
+		}
+
+		[Authorize]
+		[HttpPost("change-password")]
+		public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto passwordDto)
+		{
+			// Get the current user based on the JWT token claims
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			if (userId == null)
+			{
+				return Unauthorized("User not found.");
+			}
+
+			IdentityResult result = await _authManager.ChangePasswordAsync(userId, passwordDto);
+
+			if (!result.Succeeded)
+			{
+				// If password change failed, return validation errors
+				var errors = result.Errors.Select(e => e.Description);
+				return BadRequest(new { Errors = errors });
+			}
+
+			// If successful, return a success message
+			return Ok(new { Message = "Password changed successfully." });
 		}
 
 	}

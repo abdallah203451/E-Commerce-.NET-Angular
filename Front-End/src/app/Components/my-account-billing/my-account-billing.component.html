@@ -1,0 +1,32 @@
+<!-- Billing history card-->
+<div class="card mb-4">
+  <div class="card-header">Billing History</div>
+  <div class="card-body p-0">
+    <!-- Billing history table-->
+    <div class="table-responsive table-billing-history">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th class="border-gray-200" scope="col">Transaction ID</th>
+            <th class="border-gray-200" scope="col">Date</th>
+            <th class="border-gray-200" scope="col">Total Amount</th>
+            <th class="border-gray-200" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>#{{ order.transactionId }}</td>
+            <td>{{ order.date.split("T")[0] }}</td>
+            <td>${{ order.totalPrice }}</td>
+            <td *ngIf="order.status != 'Completed'">
+              <span class="badge bg-light text-dark">failed</span>
+            </td>
+            <td *ngIf="order.status == 'Completed'">
+              <span class="badge bg-success">Completed</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

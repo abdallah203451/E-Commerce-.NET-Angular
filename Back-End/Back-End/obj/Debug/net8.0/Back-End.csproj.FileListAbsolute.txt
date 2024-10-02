@@ -557,3 +557,15 @@ D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\n
 D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\obj\Debug\net8.0\Back-End.sourcelink.json
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Application.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Domain.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Infrastructure.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Application.pdb
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Infrastructure.pdb
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\Back_End.Domain.pdb
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\PayPal.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\PayPalCheckoutSdk.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\PayPalHttp-Dotnet.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\SendGrid.dll
+D:\Abdallah Ashraf\programming projects\E-Commerce\Back-End\Back-End\bin\Debug\net8.0\StarkbankEcdsa.dll

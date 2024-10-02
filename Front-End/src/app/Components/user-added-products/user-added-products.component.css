@@ -1,0 +1,18 @@
+@media (max-width: 767.98px) {
+  .border-sm-start-none {
+    border-left: none !important;
+  }
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quantity-info {
+  font-size: 1rem; /* Make text bigger */
+  font-weight: bold; /* Make text bold */
+}

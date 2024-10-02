@@ -1,86 +1,144 @@
 <div class="cont">
-    <app-nav-bar></app-nav-bar>
-    <!-- Start Hero Section -->
-    <div class="hero">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5">
-                    <div class="intro-excerpt">
-                        <h1>All Products</h1>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <div class="hero text-center py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 text-lg-start">
+          <h1 class="display-4">Discover Our Products</h1>
+          <p class="lead">
+            Find your next favorite product from our wide selection.
+          </p>
         </div>
+      </div>
     </div>
-    <!-- End Hero Section -->
+  </div>
 
+  <!-- Filters Section -->
+  <div class="container mt-4">
+    <form (ngSubmit)="applyFilters()" class="row gy-3">
+      <div class="col-md-3">
+        <label for="category" class="form-label">Category</label>
+        <select
+          class="form-select"
+          id="category"
+          [(ngModel)]="filterDto.Category"
+          name="category"
+        >
+          <option value="1">All Categories</option>
+          <option value="2">Electronics</option>
+          <option value="3">Computers & Laptops</option>
+          <option value="4">Mobiles</option>
+          <option value="5">Fashion</option>
+          <option value="6">Furniture</option>
+          <option value="7">Books</option>
+          <option value="8">Sports</option>
+          <option value="9">Food</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="minPrice" class="form-label">Min Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="minPrice"
+          [(ngModel)]="filterDto.MinPrice"
+          name="minPrice"
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="maxPrice" class="form-label">Max Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="maxPrice"
+          [(ngModel)]="filterDto.MaxPrice"
+          name="maxPrice"
+        />
+      </div>
+      <div class="col-md-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="filterDto.Name"
+          name="name"
+        />
+      </div>
+      <div class="col-md-12 text-end">
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
+      </div>
+    </form>
+  </div>
 
+  <!-- Spinner -->
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
-    <div class="untree_co-section product-section before-footer-section">
-        <div class="container">
-            <div class="row">
+  <!-- Products Section -->
+  <div *ngIf="!loading" class="untree_co-section product-section mt-4">
+    <div class="container">
+      <div class="row">
+        <!-- Products -->
+        <div
+          *ngFor="let prod of products"
+          class="col-lg-3 col-md-6 col-sm-12 mb-5"
+        >
+          <a class="product-item" [routerLink]="['/details', prod.id]">
+            <img
+              [src]="
+                _sanitizer.bypassSecurityTrustResourceUrl(
+                  'data:image/png;base64,' + prod.image
+                )
+              "
+              class="img-fluid product-thumbnail"
+            />
+            <h3 class="product-title">{{ prod.name }}</h3>
+            <strong class="product-price">{{ prod.price }} EGP</strong>
 
-                <!-- Start Column 1 -->
-                <div *ngFor="let prod of products;" class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img [src]="_sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + prod.image)" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">{{prod.name}}</h3>
-                        <strong class="product-price">{{prod.price}}</strong>
-
-                        <span class="icon-cross">
-                            <img src="assets/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-                <!-- End Column 1 -->
-
-                <!-- Start Column 2 -->
-                <!-- <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="assets/product-1.png" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="assets/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div> -->
-                <!-- End Column 2 -->
-
-                <!-- Start Column 3 -->
-                <!-- <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="assets/product-2.png" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Kruzo Aero Chair</h3>
-                        <strong class="product-price">$78.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="assets/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div> -->
-                <!-- End Column 3 -->
-
-                <!-- Start Column 4 -->
-                <!-- <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" href="#">
-                        <img src="assets/product-3.png" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Ergonomic Chair</h3>
-                        <strong class="product-price">$43.00</strong>
-
-                        <span class="icon-cross">
-                            <img src="assets/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div> -->
-                <!-- End Column 4 -->
-
-
-            </div>
+            <button (click)="addToCart(prod.id)" class="icon-cross">
+              <img src="assets/cross.svg" class="img-fluid" />
+            </button>
+          </a>
         </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Pagination Section -->
+  <nav aria-label="Page navigation" *ngIf="!loading">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="filterDto.PageNumber === 1">
+        <button
+          class="page-link"
+          (click)="changePage(filterDto.PageNumber - 1)"
+          tabindex="-1"
+        >
+          Previous
+        </button>
+      </li>
+      <li
+        class="page-item"
+        *ngFor="let page of [].constructor(numberOfPages); let i = index"
+      >
+        <button class="page-link" (click)="changePage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </li>
+      <li
+        class="page-item"
+        [class.disabled]="filterDto.PageNumber === numberOfPages"
+      >
+        <button
+          class="page-link"
+          (click)="changePage(filterDto.PageNumber + 1)"
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>

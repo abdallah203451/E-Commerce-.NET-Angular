@@ -1,11 +1,17 @@
-using Back_End.Configurations;
-using Back_End.Contracts;
-using Back_End.Data;
-using Back_End.Repository;
+using Back_End.Application.Payments;
+using Back_End.Application.Repositories;
+using Back_End.Application.Services;
+using Back_End.Application.Users;
+using Back_End.Domain.Entities;
+using Back_End.Infrastructure.Context;
+using Back_End.Infrastructure.Repositories;
+using Back_End.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +33,7 @@ builder.Services.AddCors(option =>
 	});
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr"), x => x.MigrationsAssembly("Back_End.Infrastructure")));
 
 builder.Services.AddIdentityCore<User>()
 	.AddRoles<IdentityRole>()
@@ -35,7 +41,17 @@ builder.Services.AddIdentityCore<User>()
 	.AddEntityFrameworkStores<ApplicationDbContext>()
 	.AddDefaultTokenProviders();
 
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration.GetSection("SendGrid"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IPaymentService, PayPalPaymentService>();
+builder.Services.AddScoped<ITrendingProductsCacheService, TrendingProductsCacheService>();
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -57,6 +73,14 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
+builder.Services.AddMemoryCache();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+	options.UseSqlServer(
+		builder.Configuration["ConnectionStrings:ConStr"],
+		b => b.MigrationsAssembly("YourAssemblyName"))
+	//.EnableSensitiveDataLogging() // Include sensitive data in the logs for debugging purposes
+	.LogTo(Console.WriteLine));
 
 var app = builder.Build();
 

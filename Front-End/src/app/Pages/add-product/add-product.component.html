@@ -1,88 +1,169 @@
 <div class="cont">
-    <app-nav-bar></app-nav-bar>
-    <div class="container">
-        <section class="panel panel-default">
-            <div class="panel-heading">
-                <h3 style="margin-top: 25px; margin-bottom: 20px;" class="panel-title">Adding new product</h3>
+  <!-- <app-nav-bar></app-nav-bar> -->
+  <div class="container">
+    <section class="panel panel-default">
+      <div class="panel-heading">
+        <h3 style="margin-top: 25px; margin-bottom: 20px" class="panel-title">
+          Adding new product
+        </h3>
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="productForm" class="form-horizontal" role="form">
+          <div style="margin-top: 10px" class="form-group">
+            <label for="name" class="col-sm-3 control-label"
+              >Product Name</label
+            >
+            <div class="col-sm-9">
+              <input
+                required
+                formControlName="name"
+                id="name"
+                [(ngModel)]="Product.name"
+                type="text"
+                class="form-control"
+                name="name"
+                id="name"
+                placeholder="Product Name"
+              />
             </div>
-            <div class="panel-body">
+          </div>
+          <!-- form-group // -->
 
-                <form [formGroup]="productForm" class="form-horizontal" role="form">
+          <div style="margin-top: 10px" class="form-group">
+            <label for="about" class="col-sm-3 control-label"
+              >Product Description</label
+            >
+            <div class="col-sm-9">
+              <textarea
+                required
+                formControlName="description"
+                id="description"
+                [(ngModel)]="Product.description"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+          <!-- form-group // -->
 
-                    <div style="margin-top: 10px;" class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Product Name</label>
-                        <div class="col-sm-9">
-                            <input required formControlName="name" id="name" [(ngModel)]="Product.name" type="text" class="form-control" name="name" id="name" placeholder="Product Name">
-                        </div>
-                    </div> <!-- form-group // -->
+          <div class="row">
+            <div style="margin-top: 10px" class="form-group col-4">
+              <label for="qty" class="col-12 control-label">Quantity</label>
+              <div class="col-12">
+                <input
+                  required
+                  formControlName="quantity"
+                  id="quantity"
+                  [(ngModel)]="Product.quantity"
+                  type="number"
+                  class="form-control"
+                  name="qty"
+                  id="qty"
+                  placeholder="Quantity"
+                />
+              </div>
+            </div>
+            <!-- form-group // -->
 
-                    <div style="margin-top: 10px;" class="form-group">
-                        <label for="about" class="col-sm-3 control-label">Product Description</label>
-                        <div class="col-sm-9">
-                            <textarea required formControlName="description" id="description" [(ngModel)]="Product.description" class="form-control"></textarea>
-                        </div>
-                    </div> <!-- form-group // -->
+            <div style="margin-top: 10px" class="form-group col-4">
+              <label for="qty" class="col-12 control-label">Price</label>
+              <div class="col-12">
+                <input
+                  required
+                  formControlName="price"
+                  id="price"
+                  [(ngModel)]="Product.price"
+                  type="number"
+                  class="form-control"
+                  name="qty"
+                  id="qty"
+                  placeholder="Price"
+                />
+              </div>
+            </div>
+            <!-- form-group // -->
 
-                    <div class="row">
-                        <div style="margin-top: 10px;" class="form-group col-4">
-                            <label for="qty" class="col-12 control-label">Quantity</label>
-                            <div class="col-12">
-                                <input required formControlName="quantity" id="quantity" [(ngModel)]="Product.quantity" type="number" class="form-control" name="qty" id="qty" placeholder="Quantity">
-                            </div>
-                        </div> <!-- form-group // -->
+            <div style="margin-top: 10px" class="form-group col-4">
+              <label for="qty" class="col-12 control-label"
+                >Percentage Discount</label
+              >
+              <div class="col-12">
+                <input
+                  required
+                  formControlName="discount"
+                  id="discount"
+                  [(ngModel)]="Product.discount"
+                  type="number"
+                  class="form-control"
+                  name="qty"
+                  id="qty"
+                  placeholder="Discount"
+                />
+              </div>
+            </div>
+            <!-- form-group // -->
+          </div>
 
-                        <div style="margin-top: 10px;" class="form-group col-4">
-                            <label for="qty" class="col-12 control-label">Price</label>
-                            <div class="col-12">
-                                <input required formControlName="price" id="price" [(ngModel)]="Product.price" type="number" class="form-control" name="qty" id="qty" placeholder="Price">
-                            </div>
-                        </div> <!-- form-group // -->
+          <div style="margin-top: 10px" class="form-group">
+            <label for="name" class="col-sm-3 control-label"
+              >Product Image</label
+            >
+            <div style="margin-top: 5px" class="col-sm-3">
+              <input
+                required
+                formControlName="image"
+                id="image"
+                (change)="onFileSelected($event)"
+                type="file"
+                value="{{ imageUrl }}"
+              />
+            </div>
+          </div>
+          <!-- form-group // -->
 
-                        <div style="margin-top: 10px;" class="form-group col-4">
-                            <label for="qty" class="col-12 control-label">Percentage Discount</label>
-                            <div class="col-12">
-                                <input required formControlName="discount" id="discount" [(ngModel)]="Product.discount" type="number" class="form-control" name="qty" id="qty" placeholder="Discount">
-                            </div>
-                        </div> <!-- form-group // -->
-                    </div>
+          <div style="margin-top: 10px" class="form-group">
+            <label for="tech" class="col-sm-3 control-label">Category</label>
+            <div class="col-sm-3">
+              <select
+                required
+                class="form-control"
+                formControlName="category"
+                id="category"
+                [(ngModel)]="Product.categoryId"
+              >
+                <option value="1">Choose category</option>
+                <option value="2">Electronics</option>
+                <option value="3">Compuetrs and Laptops</option>
+                <option value="4">Mobiles</option>
+                <option value="5">Fashion</option>
+                <option value="6">Furniture</option>
+                <option value="7">Books</option>
+                <option value="8">Sports</option>
+                <option value="9">Food</option>
+              </select>
+            </div>
+          </div>
+          <!-- form-group // -->
 
-                    <div style="margin-top: 10px;" class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Product Image</label>
-                        <div style="margin-top: 5px;" class="col-sm-3">
-                            <input required formControlName="image" id="image" (change)="onFileSelected($event)" type="file">
-                        </div>
-                    </div> <!-- form-group // -->
+          <hr />
 
-                    <div style="margin-top: 10px;" class="form-group">
-                        <label for="tech" class="col-sm-3 control-label">Category</label>
-                        <div class="col-sm-3">
-                            <select required class="form-control" formControlName="category" id="category" [(ngModel)]="Product.categoryId">
-                                <option value="1">Choose category</option>
-                                <option value="2">Electronics</option>
-                                <option value="3">Compuetrs and Laptops</option>
-                                <option value="4">Mobiles</option>
-                                <option value="5">Fashion</option>
-                                <option value="6">Furniture</option>
-                                <option value="7">Books</option>
-                                <option value="8">Sports</option>
-                                <option value="9">Food</option>
-                            </select>
-                        </div>
-                    </div> <!-- form-group // -->
-
-                    <hr>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9">
-                            <button [disabled]="!productForm.valid" (click)="onSubmit()" type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                    </div> <!-- form-group // -->
-
-                </form>
-
-            </div><!-- panel-body // -->
-        </section><!-- panel// -->
-
-
-    </div> <!-- container// -->
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <button
+                [disabled]="!productForm.valid"
+                (click)="onSubmit()"
+                type="submit"
+                class="btn btn-primary"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          <!-- form-group // -->
+        </form>
+      </div>
+      <!-- panel-body // -->
+    </section>
+    <!-- panel// -->
+  </div>
+  <!-- container// -->
 </div>

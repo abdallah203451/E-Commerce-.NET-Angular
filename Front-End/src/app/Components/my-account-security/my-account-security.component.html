@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-lg-8">
+    <!-- Change password card-->
+    <div class="card mb-4">
+      <div class="card-header">Change Password</div>
+      <div class="card-body">
+        <form [formGroup]="passwordForm" (ngSubmit)="updateProfileData()">
+          <!-- Form Group (current password)-->
+          <div class="mb-3">
+            <label class="small mb-1" for="currentPassword"
+              >Current Password</label
+            >
+            <input
+              class="form-control"
+              id="currentPassword"
+              type="password"
+              placeholder="Enter current password"
+              formControlName="oldPassword"
+              [(ngModel)]="PasswordDto.oldPassword"
+            />
+            <div
+              *ngIf="f['oldPassword'].touched && f['oldPassword'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['oldPassword'].errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="f['oldPassword'].errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="f['oldPassword'].errors?.['pattern']">
+                Password must contain upper and lower case letters, numbers, and
+                symbols.
+              </div>
+            </div>
+          </div>
+          <!-- Form Group (new password)-->
+          <div class="mb-3">
+            <label class="small mb-1" for="newPassword">New Password</label>
+            <input
+              class="form-control"
+              id="newPassword"
+              type="password"
+              placeholder="Enter new password"
+              formControlName="newPassword"
+              [(ngModel)]="PasswordDto.newPassword"
+            />
+            <div
+              *ngIf="f['newPassword'].touched && f['newPassword'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['newPassword'].errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="f['newPassword'].errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="f['newPassword'].errors?.['pattern']">
+                Password must contain upper and lower case letters, numbers, and
+                symbols.
+              </div>
+            </div>
+          </div>
+          <!-- Form Group (confirm password)-->
+          <div class="mb-3">
+            <label class="small mb-1" for="confirmPassword"
+              >Confirm Password</label
+            >
+            <input
+              class="form-control"
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm new password"
+              formControlName="newPassword1"
+              [(ngModel)]="PasswordDto.newPassword1"
+            />
+            <div
+              *ngIf="f['newPassword1'].touched && f['newPassword1'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['newPassword1'].errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="f['newPassword1'].errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="f['newPassword1'].errors?.['pattern']">
+                Password must contain upper and lower case letters, numbers, and
+                symbols.
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!passwordForm.valid"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

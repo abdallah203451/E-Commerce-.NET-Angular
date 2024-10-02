@@ -1,0 +1,10 @@
+<nav class="nav nav-borders">
+  <a class="nav-link ms-0 fw-bold fs-5 text-dark" routerLink="my-account-profile">Profile</a>
+  <a *ngIf="!isAdmin" class="nav-link fw-bold fs-5 text-dark" routerLink="my-account-billing"
+    >Orders History</a
+  >
+  <a *ngIf="isAdmin" class="nav-link fw-bold fs-5 text-dark" routerLink="user-added-products"
+    >Your Products</a
+  >
+  <a class="nav-link fw-bold fs-5 text-dark" routerLink="my-account-security">Security</a>
+</nav>

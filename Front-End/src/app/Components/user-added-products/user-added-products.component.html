@@ -1,0 +1,84 @@
+<section
+  class="rounded-1"
+  *ngIf="products.length > 0"
+  style="background-color: #eee"
+>
+  <div class="container py-5">
+    <div class="row justify-content-center mb-3" *ngFor="let p of products">
+      <div class="col-md-12 col-xl-12">
+        <div class="card shadow-0 border rounded-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img
+                    [src]="
+                      _sanitizer.bypassSecurityTrustResourceUrl(
+                        'data:image/png;base64,' + p.product.image
+                      )
+                    "
+                    class="w-100"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{ p.product.name }}</h5>
+                <div class="description">
+                  <span>{{ p.product.description }}</span>
+                </div>
+                <br />
+                <br />
+                <div class="quantity-info">
+                  <span>Remaining Quantity: {{ p.product.quantity }}</span>
+                  <span class="text-primary"> • </span>
+                  <span>Sold Quantity: {{ p.quantitySold }}</span>
+                </div>
+              </div>
+              <div
+                class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+              >
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">
+                    {{
+                      (
+                        p.product.price *
+                        (1 - p.product.discount / 100)
+                      ).toFixed(2)
+                    }}EGP
+                  </h4>
+                  <span class="text-danger"
+                    ><s>{{ p.product.price.toFixed(2) }}EGP</s></span
+                  >
+                </div>
+                <h6 class="text-success">Free shipping</h6>
+                <div class="d-flex flex-column mt-4">
+                  <a
+                    [routerLink]="['/details', p.product.id]"
+                    class="btn btn-primary btn-sm"
+                    type="button"
+                  >
+                    Details
+                  </a>
+                  <a
+                    [routerLink]="['/add-product', p.product.id]"
+                    class="btn btn-success btn-sm mt-2"
+                    type="button"
+                  >
+                    Edit
+                  </a>
+                  <button
+                    class="btn btn-danger btn-sm mt-2"
+                    type="button"
+                    (click)="deleteProduct(p.product.id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
