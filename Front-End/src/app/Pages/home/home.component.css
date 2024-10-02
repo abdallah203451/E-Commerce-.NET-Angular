@@ -298,7 +298,7 @@ a.more {
   position: relative;
 }
 
-.why-choose-section .img-wrap:before {
+/* .why-choose-section .img-wrap:before {
   position: absolute;
   content: "";
   width: 255px;
@@ -310,7 +310,7 @@ a.more {
   -ms-transform: translate(-40%, -40%);
   transform: translate(-40%, -40%);
   z-index: -1;
-}
+} */
 
 .why-choose-section .img-wrap img {
   border-radius: 20px;
@@ -360,7 +360,7 @@ a.more {
   position: relative;
 }
 
-.we-help-section .imgs-grid:before {
+/* .we-help-section .imgs-grid:before {
   position: absolute;
   content: "";
   width: 255px;
@@ -372,7 +372,7 @@ a.more {
   -ms-transform: translate(-40%, -40%);
   transform: translate(-40%, -40%);
   z-index: -1;
-}
+} */
 
 .we-help-section .imgs-grid .grid {
   position: relative;
