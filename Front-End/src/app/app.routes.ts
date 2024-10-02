@@ -20,6 +20,7 @@ import { ProductDetailsComponent } from './Pages/product-details/product-details
 import { UserAddedProductsComponent } from './Components/user-added-products/user-added-products.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
@@ -73,5 +74,4 @@ export const routes: Routes = [
     path: 'reset-password',
     component: ResestPasswordComponent,
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
