@@ -75,12 +75,12 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddMemoryCache();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-	options.UseSqlServer(
-		builder.Configuration["ConnectionStrings:ConStr"],
-		b => b.MigrationsAssembly("YourAssemblyName"))
-	//.EnableSensitiveDataLogging() // Include sensitive data in the logs for debugging purposes
-	.LogTo(Console.WriteLine));
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//	options.UseSqlServer(
+//		builder.Configuration["ConnectionStrings:ConStr"],
+//		b => b.MigrationsAssembly("YourAssemblyName"))
+//	//.EnableSensitiveDataLogging() // Include sensitive data in the logs for debugging purposes
+//	.LogTo(Console.WriteLine));
 
 var app = builder.Build();
 

@@ -89,6 +89,11 @@ export class MyAccountSecurityComponent {
           console.error(error);
         },
       });
+    } else {
+      this.toastr.error(
+        'Password and cinfirm password must be the same!',
+        'changing password failed'
+      );
     }
   }
 }

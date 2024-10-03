@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProductService {
-  private BaseUrl: string = 'https://localhost:7238/api/Product/';
+  //private BaseUrl: string = 'https://localhost:7238/api/Product/';
+  private BaseUrl: string = 'https://quickbuy.runasp.net/api/Product/';
   constructor(private http: HttpClient) {}
   addProduct(product: any) {
     return this.http.post<any>(`${this.BaseUrl}addproduct`, product);

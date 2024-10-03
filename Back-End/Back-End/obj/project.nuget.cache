@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8JhmBfjYFBWFpM90II3qtmMmGxGTWGejL/UIGY1efAIYzyhHPCxbFPZba7NVNU7OE32ck/0EPNTdObsnphkbOQ==",
+  "dgSpecHash": "adfizUHbGCkAeHGOGmm/rK90aPEgLHOStz747RJS6bwSH2LvXPRLRH7va8SuuZyuObaa0eghAqgx8gS4M0G03w==",
   "success": true,
-  "projectFilePath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.Presentation.csproj",
+  "projectFilePath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

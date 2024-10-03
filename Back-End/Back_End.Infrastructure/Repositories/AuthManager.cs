@@ -154,7 +154,17 @@ namespace Back_End.Infrastructure.Repositories
 
 			// Send the token via email
 			var resetLink = $"http://localhost:4200/reset-password?token={HttpUtility.UrlEncode(token)}&email={email}";
-			await _emailSender.SendEmailAsync(email, "Reset Your Password", $"Please reset your password by clicking here: <a href='{resetLink}'>link</a>");
+
+
+			// Load email template from a file
+			string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Templates", "PasswordResetEmailTemplate.html");
+			string emailBody = await File.ReadAllTextAsync(templatePath);
+
+			// Replace the placeholder with the actual reset link
+			emailBody = emailBody.Replace("{{ResetLink}}", resetLink);
+
+
+			await _emailSender.SendEmailAsync(email, "Reset Your Password", emailBody);
 
 			return token;
 		}

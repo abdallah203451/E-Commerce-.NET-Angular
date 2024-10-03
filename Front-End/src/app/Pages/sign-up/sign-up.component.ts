@@ -16,6 +16,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgIf } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 //import { NotificationService } from '../../notification.service';
 
 @Component({
@@ -29,7 +30,11 @@ export class SignUpComponent {
   public invalidRegister = false;
   registerForm!: FormGroup;
   phonePattern = '^[0-9]{4}[0-9]{3}[0-9]{4}$';
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       fullname: new FormControl(this.UserRegister.username, [
@@ -77,6 +82,10 @@ export class SignUpComponent {
     return this.registerForm.get('password1');
   }
 
+  get f() {
+    return this.registerForm.controls;
+  }
+
   UserRegister: any = {
     fullname: '',
     email: '',
@@ -90,17 +99,27 @@ export class SignUpComponent {
     localStorage.clear();
     if (this.registerForm.valid) {
       // perform logic for signup
-      this.auth.signUp(this.registerForm.value).subscribe({
-        next: (res) => {
-          this.invalidRegister = false;
-          //this.notification.showSuccess("New user registered successfully", "Success")
-          this.router.navigate(['/sign-in']);
-          alert(res.message);
-        },
-        error: (err) => {
-          alert(err?.error.message);
-        },
-      });
+      if (this.UserRegister.password == this.UserRegister.password1) {
+        this.auth.signUp(this.registerForm.value).subscribe({
+          next: (res) => {
+            this.invalidRegister = false;
+            this.toastr.success(
+              'You have successfully sign up!',
+              'sign-up Success'
+            );
+            this.router.navigate(['/sign-in']);
+            alert(res.message);
+          },
+          error: (err) => {
+            this.toastr.error('Invalid email', 'Login failed');
+          },
+        });
+      } else {
+        this.toastr.error(
+          'Password and confirm password must be the same',
+          'Login failed'
+        );
+      }
       // console.log(this.registerForm.value);
     }
   }

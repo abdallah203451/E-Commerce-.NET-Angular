@@ -2,49 +2,152 @@
   <div class="container1">
     <div class="title">Registration</div>
     <div class="content">
-      <form [formGroup]="registerForm">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input formControlName="fullname" id="fullname" [(ngModel)]="UserRegister.fullname" type="text"
-              placeholder="Enter your name" required>
+            <input
+              formControlName="fullname"
+              id="fullname"
+              [(ngModel)]="UserRegister.fullname"
+              type="text"
+              placeholder="Enter your name"
+              required
+            />
+            <div
+              *ngIf="f['fullname'].touched && f['fullname'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['fullname'].errors?.['minlength']">
+                Name must be more than or equal to 3 characters.
+              </div>
+              <div *ngIf="f['fullname'].errors?.['required']">
+                Full name is required.
+              </div>
+            </div>
           </div>
 
           <div class="input-box">
             <span class="details">Email</span>
-            <input formControlName="email" id="email" [(ngModel)]="UserRegister.email" type="text"
-              placeholder="Enter your email" required>
+            <input
+              formControlName="email"
+              id="email"
+              [(ngModel)]="UserRegister.email"
+              type="text"
+              placeholder="Enter your email"
+              required
+            />
+            <div
+              *ngIf="f['email'].touched && f['email'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['email'].errors?.['required']">
+                email is required.
+              </div>
+              <div *ngIf="f['email'].errors?.['email']">must be email</div>
+            </div>
           </div>
 
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input formControlName="phone" id="phone" [(ngModel)]="UserRegister.phone" type="text"
-              placeholder="Enter your number" required>
+            <input
+              formControlName="phone"
+              id="phone"
+              [(ngModel)]="UserRegister.phone"
+              type="text"
+              placeholder="Enter your number"
+              required
+            />
+            <div
+              *ngIf="f['phone'].touched && f['phone'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['phone'].errors?.['required']">
+                Phone number is required.
+              </div>
+              <div *ngIf="f['phone'].errors?.['pattern']">
+                Phone number must be in the correct format (e.g. 01234567891).
+              </div>
+            </div>
           </div>
 
           <div class="input-box">
             <span class="details">Password</span>
-            <input formControlName="password" id="password" [(ngModel)]="UserRegister.password" type="text"
-              placeholder="Enter your password" required>
+            <input
+              formControlName="password"
+              id="password"
+              [(ngModel)]="UserRegister.password"
+              type="password"
+              placeholder="Enter your password"
+              required
+            />
+            <div
+              *ngIf="f['password'].touched && f['password'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['password'].errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="f['password'].errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="f['password'].errors?.['pattern']">
+                Password must contain an uppercase letter, a number, and a
+                special character.
+              </div>
+            </div>
           </div>
 
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input formControlName="password1" id="password1" [(ngModel)]="UserRegister.password1" type="text"
-              placeholder="Confirm your password" required>
+            <input
+              formControlName="password1"
+              id="password1"
+              [(ngModel)]="UserRegister.password1"
+              type="password"
+              placeholder="Confirm your password"
+              required
+            />
+            <div
+              *ngIf="f['password1'].touched && f['password1'].invalid"
+              class="text-danger"
+              style="font-size: small; padding-left: 10px"
+            >
+              <div *ngIf="f['password1'].errors?.['required']">
+                Confirm password is required.
+              </div>
+              <div *ngIf="f['password1'].errors?.['minlength']">
+                Confirm password must be at least 8 characters long.
+              </div>
+              <div *ngIf="f['password1'].errors?.['pattern']">
+                Confirm password must contain an uppercase letter, a number, and
+                a special character.
+              </div>
+            </div>
           </div>
 
           <div class="container">
             <span class="details">Are you a Seller?</span>
-            <input style="margin-left: 5px; " formControlName="isSeller" [(ngModel)]="UserRegister.isSeller" type="checkbox">
+            <input
+              style="margin-left: 5px"
+              formControlName="isSeller"
+              [(ngModel)]="UserRegister.isSeller"
+              type="checkbox"
+            />
           </div>
-
         </div>
 
         <div class="button">
-          <input [disabled]="!registerForm.valid" type="submit" (click)="onRegister()" value="Sign Up">
+          <input
+            [disabled]="!registerForm.valid"
+            type="submit"
+            value="Sign Up"
+          />
         </div>
-
       </form>
     </div>
   </div>

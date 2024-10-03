@@ -29,7 +29,7 @@ namespace Back_End.Infrastructure.Services
 			var client = new SendGridClient(apiKey);
 			var msg = new SendGridMessage()
 			{
-				From = new EmailAddress("abdallahashraf.307@gmail.com", "ECommerce"),
+				From = new EmailAddress("abdallahashraf.307@gmail.com", "QuickBuy"),
 				Subject = subject,
 				PlainTextContent = message,
 				HtmlContent = message

@@ -37,6 +37,7 @@
         "dependencies": {
           "AutoMapper": "13.0.1",
           "Back_End.Application": "1.0.0",
+          "Back_End.Domain": "1.0.0",
           "Back_End.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.2",

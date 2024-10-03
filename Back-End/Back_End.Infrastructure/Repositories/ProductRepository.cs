@@ -10,6 +10,7 @@ using Back_End.Application.Repositories;
 using Back_End.Application.Products;
 using System.Drawing.Printing;
 using Microsoft.CodeAnalysis;
+using System.Collections;
 
 namespace Back_End.Infrastructure.Repositories
 {
@@ -36,7 +37,7 @@ namespace Back_End.Infrastructure.Repositories
 		public async Task<PagedResult<Product>> GetAllProducts(ProductFilterDto filterDto, int pageSize)
 		{
 			// Start with the base query
-			IQueryable<Product> productsQuery = _context.Products;
+			IEnumerable<Product> productsQuery = _context.Products;
 
 			// Apply category filter (1 means all categories, skip filtering if it's 1)
 			if (filterDto.Category != 1)
@@ -61,11 +62,11 @@ namespace Back_End.Infrastructure.Repositories
 			}
 
 			// Pagination logic
-			var totalItems = await productsQuery.CountAsync(); // Get total count after filtering
-			var products = await productsQuery
+			var totalItems = productsQuery.Count(); // Get total count after filtering
+			var products = productsQuery
 				.Skip((filterDto.PageNumber - 1) * pageSize) // Skip for pagination
 				.Take(pageSize)                             // Take the page size
-				.ToListAsync();
+				.ToList();
 
 			// Return paginated result
 			return new PagedResult<Product>
@@ -82,10 +83,10 @@ namespace Back_End.Infrastructure.Repositories
 			var sevenDaysAgo = DateTime.UtcNow.AddDays(-7);
 
 			// Start building the query, applying filters first
-			var trendingProductsQuery = _context.OrderItems
+			IEnumerable<TrendingProductFilter> trendingProductsQuery = _context.OrderItems
 				.Where(oi => oi.Order.Date >= sevenDaysAgo) // Filter by last 7 days
 				.GroupBy(oi => new { oi.Product.Id, oi.Product.Name, oi.Product.Price, oi.Product.Image, oi.Product.CategoryId })
-				.Select(g => new
+				.Select(g => new TrendingProductFilter
 				{
 					ProductId = g.Key.Id,
 					Name = g.Key.Name,
@@ -93,7 +94,7 @@ namespace Back_End.Infrastructure.Repositories
 					Image = g.Key.Image,
 					CategoryId = g.Key.CategoryId,
 					TotalQuantitySold = g.Sum(oi => oi.quantity) // Calculate total quantity sold
-				});
+				}).ToList();
 
 			// Apply category filter (1 means all categories)
 			if (filterDto.Category != 1)
@@ -121,11 +122,11 @@ namespace Back_End.Infrastructure.Repositories
 			trendingProductsQuery = trendingProductsQuery.OrderByDescending(p => p.TotalQuantitySold);
 
 			// Pagination logic
-			var totalItems = await trendingProductsQuery.CountAsync();
-			var trendingProducts = await trendingProductsQuery
+			var totalItems = trendingProductsQuery.Count();
+			var trendingProducts = trendingProductsQuery
 				.Skip((filterDto.PageNumber - 1) * pageSize) // Skip for pagination
 				.Take(pageSize)                             // Take the page size
-				.ToListAsync();
+				.ToList();
 
 			// Convert to DTOs
 			var productDtos = trendingProducts.Select(p => new ProductDto

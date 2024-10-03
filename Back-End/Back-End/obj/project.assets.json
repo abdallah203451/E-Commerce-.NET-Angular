@@ -9140,6 +9140,7 @@
     "net8.0": [
       "AutoMapper >= 13.0.1",
       "Back_End.Application >= 1.0.0",
+      "Back_End.Domain >= 1.0.0",
       "Back_End.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.2",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.2",
@@ -9157,9 +9158,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.Presentation.csproj",
-      "projectName": "Back-End.Presentation",
-      "projectPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.Presentation.csproj",
+      "projectUniqueName": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.csproj",
+      "projectName": "Back-End",
+      "projectPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\Back-End.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
       "outputPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back-End\\obj\\",
       "projectStyle": "PackageReference",
@@ -9180,6 +9181,9 @@
           "projectReferences": {
             "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Application\\Back_End.Application.csproj": {
               "projectPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Application\\Back_End.Application.csproj"
+            },
+            "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Domain\\Back_End.Domain.csproj": {
+              "projectPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Domain\\Back_End.Domain.csproj"
             },
             "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Infrastructure\\Back_End.Infrastructure.csproj": {
               "projectPath": "D:\\Abdallah Ashraf\\programming projects\\E-Commerce\\Back-End\\Back_End.Infrastructure\\Back_End.Infrastructure.csproj"
