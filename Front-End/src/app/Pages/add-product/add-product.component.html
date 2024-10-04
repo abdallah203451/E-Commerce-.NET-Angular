@@ -3,8 +3,19 @@
   <div class="container">
     <section class="panel panel-default">
       <div class="panel-heading">
-        <h3 style="margin-top: 25px; margin-bottom: 20px" class="panel-title">
+        <h3
+          *ngIf="!productId"
+          style="margin-top: 25px; margin-bottom: 20px"
+          class="panel-title"
+        >
           Adding new product
+        </h3>
+        <h3
+          *ngIf="productId"
+          style="margin-top: 25px; margin-bottom: 20px"
+          class="panel-title"
+        >
+          Update product
         </h3>
       </div>
       <div class="panel-body">

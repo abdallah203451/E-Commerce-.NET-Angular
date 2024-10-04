@@ -153,18 +153,18 @@ namespace Back_End.Infrastructure.Repositories
 			var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
 			// Send the token via email
-			var resetLink = $"http://localhost:4200/reset-password?token={HttpUtility.UrlEncode(token)}&email={email}";
+			var resetLink = $"https://e-commerce-front-end-iota.vercel.app/reset-password?token={HttpUtility.UrlEncode(token)}&email={email}";
 
 
-			// Load email template from a file
-			string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Templates", "PasswordResetEmailTemplate.html");
-			string emailBody = await File.ReadAllTextAsync(templatePath);
+			//// Load email template from a file
+			//string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Templates", "PasswordResetEmailTemplate.html");
+			//string emailBody = await File.ReadAllTextAsync(templatePath);
 
-			// Replace the placeholder with the actual reset link
-			emailBody = emailBody.Replace("{{ResetLink}}", resetLink);
+			//// Replace the placeholder with the actual reset link
+			//emailBody = emailBody.Replace("{{ResetLink}}", resetLink);
 
 
-			await _emailSender.SendEmailAsync(email, "Reset Your Password", emailBody);
+			await _emailSender.SendEmailAsync(email, "Reset Your Password", $"<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <style>\r\n        .email-container {{\r\n            font-family: Arial, sans-serif;\r\n            padding: 20px;\r\n            background-color: #f4f4f4;\r\n        }}\r\n\r\n        .email-content {{\r\n            background-color: #ffffff;\r\n            padding: 20px;\r\n            border-radius: 10px;\r\n            text-align: center;\r\n            max-width: 600px;\r\n            margin: 0 auto;\r\n        }}\r\n\r\n        .email-content h2 {{\r\n            color: #333333;\r\n        }}\r\n\r\n        .reset-button {{\r\n            display: inline-block;\r\n            background: #007bff;\r\n            color: white;\r\n            padding: 10px 20px;\r\n            border-radius: 5px;\r\n            text-decoration: none;\r\n            font-weight: bold;\r\n            line-height: 25px;\r\n            font-size: 20px;\r\n        }}\r\n\r\n            .reset-button:hover {{\r\n                background: #007bff;\r\n            }}\r\n    </style>\r\n</head>\r\n<body>\r\n    <div class=\"email-container\">\r\n        <div class=\"email-content\">\r\n            <h2>Password Reset Request</h2>\r\n            <p>Hello,</p>\r\n            <p>You have requested to reset your password. Click the button below to reset it:</p>\r\n            <a href=\"{resetLink}\" class=\"reset-button\">Reset Password</a>\r\n            <p>If you did not request this, please ignore this email.</p>\r\n        </div>\r\n    </div>\r\n</body>\r\n</html>\r\n");
 
 			return token;
 		}

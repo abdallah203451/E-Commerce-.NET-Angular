@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
-  private BaseUrl: string = 'https://localhost:7238/api/Cart/';
-  //private BaseUrl: string = 'https://quickbuy.runasp.net/api/Cart/';
+  //private BaseUrl: string = 'https://localhost:7238/api/Cart/';
+  private BaseUrl: string = 'https://quickbuy.runasp.net/api/Cart/';
   constructor(private http: HttpClient) {}
   GetCartItems() {
     return this.http.get<any>(`${this.BaseUrl}GetCartItems`);

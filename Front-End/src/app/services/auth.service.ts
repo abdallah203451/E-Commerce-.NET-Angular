@@ -8,8 +8,8 @@ import { ResetPassword } from '../models/ResetPassword';
   providedIn: 'root',
 })
 export class AuthService {
-  private BaseUrl: string = 'https://localhost:7238/api/User/';
-  //private BaseUrl: string = 'https://quickbuy.runasp.net/api/User/';
+  //private BaseUrl: string = 'https://localhost:7238/api/User/';
+  private BaseUrl: string = 'https://quickbuy.runasp.net/api/User/';
   constructor(private http: HttpClient) {}
   signUp(userObj: any) {
     return this.http.post<any>(`${this.BaseUrl}register`, userObj);
