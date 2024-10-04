@@ -22,7 +22,7 @@ namespace Back_End.Infrastructure.Services
 
 		public PayPalPaymentService()
 		{
-			var environment = new SandboxEnvironment("Affuq41RK0LuTixnsg4GmlHPC_CcQG2Xs_IOPH4CjDHbJOneHispQ1kdL1mpAPCVU6DqHu_yJqu3vnj8", "EIxO7YscbDMxTGpY1961aEgnTR0g-dFzNu63cDvubeOohv9aJEKMcrKVptcteRRHroXaxgdi4WyOGX_R");
+			var environment = new SandboxEnvironment("", "");
 			_client = new PayPalHttpClient(environment);
 		}
 
