@@ -12,17 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
-  imports: [NavBarComponent, FormsModule, ReactiveFormsModule],
+  imports: [NavBarComponent, FormsModule, ReactiveFormsModule,CommonModule],
 })
 export class AddProductComponent {
   productForm!: FormGroup;
   imageUrl!: any;
+  productId:any;
   Product: any = {
     id: 1,
     name: '',
@@ -44,9 +46,9 @@ export class AddProductComponent {
   ) {}
 
   ngOnInit(): void {
-    const productId = this.route.snapshot.paramMap.get('id');
-    if (productId) {
-      this.fetchProductDetails(productId);
+    this.productId = this.route.snapshot.paramMap.get('id');
+    if (this.productId) {
+      this.fetchProductDetails(this.productId);
     }
     this.productForm = new FormGroup({
       name: new FormControl(this.Product.name, [

@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class OrderService {
-  //private BaseUrl: string = 'https://localhost:7238/api/Order/';
-  private BaseUrl: string = 'https://quickbuy.runasp.net/api/Order/';
+  private BaseUrl: string = 'https://localhost:7238/api/Order/';
+  //private BaseUrl: string = 'https://quickbuy.runasp.net/api/Order/';
   constructor(private http: HttpClient) {}
   createOrder(obj: any) {
     return this.http.post<any>(`${this.BaseUrl}create`, obj);
